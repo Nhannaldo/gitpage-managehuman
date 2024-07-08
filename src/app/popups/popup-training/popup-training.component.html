@@ -1,0 +1,188 @@
+<div mat-dialog-title>
+  <span style="font-size: 24px">{{
+    data ? "Cập nhật quá trình đào tạo" : "Thêm mới quá trình đào tạo"
+  }}</span>
+</div>
+<div mat-dialog-content class="content">
+  <div class="row">
+    <div class="column">
+      <span>Từ ngày *</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="datestart"
+          placeholder="dd/mm/yyyy"
+          [(ngModel)]="trainingObj.TuNgay"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="datestart"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #datestart></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Đến ngày *</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="dateend"
+          placeholder="dd/mm/yyyy"
+          [(ngModel)]="trainingObj.DenNgay"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="dateend"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dateend></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <span>Đơn vị bên ngoài đào tạo*</span>
+      <mat-form-field appearance="outline">
+        <input matInput type="text" [(ngModel)]="trainingObj.DonVi" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Đơn vị nội bộ đào tạo*</span>
+      <mat-form-field appearance="outline">
+        <input matInput type="text" [(ngModel)]="trainingObj.DonViDaoTao" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Tên khóa đào tạo*</span>
+      <mat-form-field appearance="outline">
+        <input matInput type="text" [(ngModel)]="trainingObj.KhoaDaoTao" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Hình thức tổ chức *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="trainingObj.HinhThucToChuc">
+          <mat-option *ngFor="let option of hinhthuctochuc" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+        <!-- <input matInput type="text" [(ngModel)]="educationObj.TrinhDoDaoTao" /> -->
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Kết quả khóa đào tạo *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="trainingObj.KetQuaDaoTao">
+          <mat-option *ngFor="let option of ketquadaotao" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Điểm *</span>
+      <mat-form-field appearance="outline">
+        <input matInput type="number" [(ngModel)]="trainingObj.Diem" />
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Chi phí đào tạo *</span>
+      <mat-form-field appearance="outline">
+        <input matInput type="number" [(ngModel)]="trainingObj.ChiPhiDaoTao" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Thời gian cam kết(tháng) *</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="trainingObj.ThoiGianCamKet"
+        />
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Thời gian cam kết còn lại(ngày) *</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="trainingObj.ThoiGianCamKetConLai"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Trạng thái *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="trainingObj.TrangThai">
+          <mat-option *ngFor="let option of trangthai" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Chức danh *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="trainingObj.ChucDanh">
+          <mat-option *ngFor="let option of chucdanh" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Kết quả các môn*</span>
+      <mat-form-field appearance="outline">
+        <input matInput type="text" [(ngModel)]="trainingObj.KetQuaCacMon" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Nội dung cam kết*</span>
+      <mat-form-field appearance="outline">
+        <input matInput type="text" [(ngModel)]="trainingObj.NoiDungCamKet" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <div style="display: flex; align-items: center">
+        <input type="checkbox" [(ngModel)]="trainingObj.CapChungChi" />Được cấp
+        chứng chỉ
+      </div>
+    </div>
+    <div class="column">
+      <div style="display: flex; align-items: center">
+        <input type="checkbox" [(ngModel)]="trainingObj.KyHopDong" />Ký hợp đồng
+        đào tạo
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="action">
+  <button mat-raised-button (click)="closeModal()">Hủy</button>
+  <button
+    mat-raised-button
+    color="primary"
+    cdkFocusInitial
+    (click)="onSubmit()"
+  >
+    {{ data ? "Cập nhật" : "Thêm" }}
+  </button>
+</div>

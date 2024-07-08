@@ -1,0 +1,71 @@
+<div mat-dialog-title>
+  <span style="font-size: 24px">{{
+    data ? "Cập nhật tham gia dự án" : "Thêm mới tham gia dự án"
+  }}</span>
+</div>
+<div mat-dialog-content class="content">
+  <div class="row">
+    <div class="column">
+      <span>Từ ngày *</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="datestart"
+          placeholder="dd/mm/yyyy"
+          [(ngModel)]="joinprojectObj.TuNgay"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="datestart"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #datestart></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Đến ngày*</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="dateend"
+          placeholder="dd/mm/yyyy"
+          [(ngModel)]="joinprojectObj.DenNgay"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="dateend"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dateend></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Sản phẩm CNTT*</span>
+      <mat-form-field appearance="outline">
+        <input matInput type="text" [(ngModel)]="joinprojectObj.SanPhamCNTT" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Mô tả*</span>
+
+      <textarea
+        matInput
+        [(ngModel)]="joinprojectObj.MoTa"
+        class="desciption-input"
+      ></textarea>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="action">
+  <button mat-raised-button (click)="closeModal()">Hủy</button>
+  <button
+    mat-raised-button
+    color="primary"
+    cdkFocusInitial
+    (click)="onSubmit()"
+  >
+    {{ data ? "Cập nhật" : "Thêm" }}
+  </button>
+</div>

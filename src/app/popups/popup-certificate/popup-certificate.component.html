@@ -1,0 +1,200 @@
+<div mat-dialog-title>
+  <span style="font-size: 24px">{{
+    data ? "Cập nhật chứng chỉ, chứng nhận" : "Thêm mới chứng chỉ, chứng nhận"
+  }}</span>
+</div>
+<div mat-dialog-content class="content">
+  <div class="row">
+    <div class="column">
+      <span>Từ ngày *</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="datestart"
+          placeholder="dd/mm/yyyy"
+          [(ngModel)]="certificateObj.TuNgay"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="datestart"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #datestart></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Đến ngày*</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="dateend"
+          placeholder="dd/mm/yyyy"
+          [(ngModel)]="certificateObj.DenNgay"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="dateend"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dateend></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <span>Đính kèm file</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          [value]="filename"
+          placeholder="Choose a file"
+          readonly
+          [(ngModel)]="certificateObj.FileDinhKem"
+        />
+        <input
+          type="file"
+          (change)="onFileSelected($event)"
+          hidden
+          #fileInput
+          accept="application/pdf"
+        />
+        <button
+          mat-button
+          matSuffix
+          (click)="fileInput.click()"
+          class="btn-file"
+        >
+          Chọn file
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Văn bằng chứng chỉ*</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="certificateObj.VanBangChungChi"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Ngày cấp chứng chỉ*</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="date"
+          placeholder="dd/mm/yyyy"
+          [(ngModel)]="certificateObj.NgayCapChungChi"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="date"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #date></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Loại chứng chỉ*</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="certificateObj.LoaiChungChi">
+          <mat-option *ngFor="let option of loaichungchi" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Lĩnh vực chứng chỉ *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="certificateObj.LinhVucChungChi">
+          <mat-option *ngFor="let option of linhvucchungchi" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Mức chứng chỉ *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="certificateObj.MucChungChi">
+          <mat-option *ngFor="let option of mucchungchi" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Cơ sở đào tạo *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="certificateObj.CoSoDaoTao">
+          <mat-option *ngFor="let option of cosodaotao" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Địa điểm đào tạo *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="certificateObj.DiaDiemDaoTao">
+          <mat-option *ngFor="let option of diadiemdaotao" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <span>Điểm *</span>
+      <mat-form-field appearance="outline">
+        <input matInput type="number" [(ngModel)]="certificateObj.Diem" />
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Kết quả xếp loại *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="certificateObj.KetQuaXepLoai">
+          <mat-option *ngFor="let option of ketquaxeploai" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <div style="display: flex; align-items: center">
+        <input
+          type="checkbox"
+          [(ngModel)]="certificateObj.ChungChiQuocTe"
+        />Chứng chỉ quốc tế
+      </div>
+    </div>
+    <div class="column">
+      <div style="display: flex; align-items: center">
+        <input type="checkbox" [(ngModel)]="certificateObj.CuDiHoc" />Cử đi học
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="action">
+  <button mat-raised-button (click)="closeModal()">Hủy</button>
+  <button
+    mat-raised-button
+    color="primary"
+    cdkFocusInitial
+    (click)="onSubmit()"
+  >
+    {{ data ? "Cập nhật" : "Thêm" }}
+  </button>
+</div>

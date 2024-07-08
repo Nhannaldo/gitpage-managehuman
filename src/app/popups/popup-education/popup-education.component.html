@@ -1,0 +1,191 @@
+<div mat-dialog-title>
+  <span style="font-size: 24px">{{
+    data ? "Cập nhật trình độ học vấn" : "Thêm mới trình độ học vấn"
+  }}</span>
+</div>
+<div mat-dialog-content class="content">
+  <div class="row">
+    <div class="column">
+      <span>Thời gian học *</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="datestart"
+          placeholder="dd/mm/yyyy"
+          [(ngModel)]="educationObj.TuNgay"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="datestart"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #datestart></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Ngày cấp bằng *</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="dateend"
+          placeholder="dd/mm/yyyy"
+          [(ngModel)]="educationObj.DenNgay"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="dateend"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dateend></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <span>Đính kèm file</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          [value]="filename"
+          placeholder="Choose a file"
+          readonly
+          [(ngModel)]="educationObj.FileDinhKem"
+        />
+        <input
+          type="file"
+          (change)="onFileSelected($event)"
+          hidden
+          #fileInput
+          accept="application/pdf"
+        />
+        <button
+          mat-button
+          matSuffix
+          (click)="fileInput.click()"
+          class="btn-file"
+        >
+          Chọn file
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Trình độ đào tạo *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="educationObj.TrinhDoDaoTao">
+          <mat-option *ngFor="let option of trinhdodaotao" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+        <!-- <input matInput type="text" [(ngModel)]="educationObj.TrinhDoDaoTao" /> -->
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Chuyên ngành đào tạo *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="educationObj.ChuyenNganhDaoTao">
+          <mat-option
+            *ngFor="let option of chuyennganhdaotao"
+            [value]="option"
+            >{{ option }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Ngành đào tạo *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="educationObj.NganhDaoTao">
+          <mat-option *ngFor="let option of nganhdaotao" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Hình thức đào tạo *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="educationObj.HinhThucDaoTao">
+          <mat-option *ngFor="let option of hinhthucdaotao" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <span>Cơ sở đào tạo *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="educationObj.CoSoDaoTao">
+          <mat-option *ngFor="let option of cosodaotao" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Loại đào tạo *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="educationObj.LoaiDaoTao">
+          <mat-option *ngFor="let option of loaidaotao" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <span>Xếp loại tốt nghiệp *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="educationObj.XepLoaiTotNghiep">
+          <mat-option
+            *ngFor="let option of xeploaitotnghiep"
+            [value]="option"
+            >{{ option }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <span>Danh hiệu đào tạo *</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="educationObj.DanhHieuDaoTao">
+          <mat-option *ngFor="let option of danhhieudaotao" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <div style="display: flex; align-items: center">
+        <input
+          type="checkbox"
+          [(ngModel)]="educationObj.TrinhDoHocVanUuTien"
+        />Trình độ học vấn ưu tiên
+      </div>
+    </div>
+    <div class="column">
+      <div style="display: flex; align-items: center">
+        <input type="checkbox" [(ngModel)]="educationObj.CuDiHoc" />Cử đi học
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="action">
+  <button mat-raised-button (click)="closeModal()">Hủy</button>
+  <button
+    mat-raised-button
+    color="primary"
+    cdkFocusInitial
+    (click)="onSubmit()"
+  >
+    {{ data ? "Cập nhật" : "Thêm" }}
+  </button>
+</div>
