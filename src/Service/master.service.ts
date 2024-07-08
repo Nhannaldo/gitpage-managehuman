@@ -17,7 +17,7 @@ import {
 })
 export class MasterService {
   constructor(private http: HttpClient) {}
-  apiUrl: string = 'http://localhost:3000/';
+  apiUrl: string = 'https://22a4-123-28-73-149.ngrok-free.app/';
 
   //Education
 
